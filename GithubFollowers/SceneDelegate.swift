@@ -25,6 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = createtabBar()
         window?.makeKeyAndVisible()
         
+        configureNavigationBar()
+        
     }
     
 // Custom search Navigation controller
@@ -32,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let searchVC = SearchVC()
         searchVC.title = "Search"
-        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
         return UINavigationController(rootViewController: searchVC)
     }
     
@@ -42,7 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let favoritesListVC = FavoritesListVC()
         favoritesListVC.title = "Favorites"
-        favoritesListVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        favoritesListVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
         return UINavigationController(rootViewController: favoritesListVC)
     }
 
@@ -51,11 +53,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBar = UITabBarController()
         UITabBar.appearance().tintColor = .systemGreen
-        tabBar.viewControllers = [CreateFavoritesNavigationController(), createSearchNavigationController()]
+        tabBar.viewControllers = [ createSearchNavigationController(),CreateFavoritesNavigationController()]
         return tabBar
         
     }
-
+    
+    func configureNavigationBar(){
+        UINavigationBar.appearance().tintColor = .systemGreen
+    }
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
