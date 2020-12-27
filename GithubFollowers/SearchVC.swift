@@ -13,7 +13,9 @@ class SearchVC: UIViewController {
     let logoImageView = UIImageView()
     let userNameTextField = GFTextField()
     let callToActionButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
-
+    
+    var isUsernameEmpty: Bool {return !userNameTextField.text!.isEmpty}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLogoImageView()
@@ -36,6 +38,19 @@ class SearchVC: UIViewController {
         
         
     }
+    
+    @objc func pushFollowerListVC() {
+        
+        guard isUsernameEmpty else {
+            print("No username")
+            return
+            
+        }
+        let followerListVC = FollowerListVC()
+        followerListVC.username = userNameTextField.text
+        followerListVC.title = userNameTextField.text
+        navigationController?.pushViewController(followerListVC, animated: true)
+    }
 
  
 // Configuring logo image view
@@ -57,6 +72,7 @@ class SearchVC: UIViewController {
 //Configuring Text field
     func configureUserTextField() {
         view.addSubview(userNameTextField)
+        userNameTextField.delegate = self
         
         NSLayoutConstraint.activate([
             
@@ -74,6 +90,7 @@ class SearchVC: UIViewController {
 // Configuring call to action Button
     func configureCallToActionButton() {
         view.addSubview(callToActionButton)
+        callToActionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             
@@ -88,4 +105,12 @@ class SearchVC: UIViewController {
     }
 
 
+}
+
+//text field delegate 
+extension SearchVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        pushFollowerListVC()
+        return true
+    }
 }
