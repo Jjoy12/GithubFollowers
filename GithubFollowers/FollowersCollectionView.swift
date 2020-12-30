@@ -9,12 +9,13 @@ import UIKit
 
 class FollowersCollectionView: UICollectionView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+ //   init(frame:CGRect) {
+    
+ //   }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
-
+    
+    
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class SearchVC: UIViewController {
 
-//    Variables to initalize custom Image view, Text field, and Button
+    // MARK: - Variables to initalize custom Image view, Text field, and Button
     let logoImageView = UIImageView()
     let userNameTextField = GFTextField()
     let callToActionButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
@@ -25,18 +25,18 @@ class SearchVC: UIViewController {
 
         view.backgroundColor = .systemBackground
     }
-//Gets called every time the screen appears
+    // MARK: - Gets called every time the screen appears
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
-// create Dismiss keyboard varibale and initalizr UITapaGesture
+    /*
+    - Creates the keyboard tap gesture
+    */
     func createKeyBoardTapGesture() {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
-        
-        
     }
     
     @objc func pushFollowerListVC() {
@@ -53,7 +53,7 @@ class SearchVC: UIViewController {
     }
 
  
-// Configuring logo image view
+    // MARK: Configuring logo image view
     func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -97,14 +97,9 @@ class SearchVC: UIViewController {
             callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            callToActionButton.heightAnchor.constraint(equalToConstant: 50)
-            
-            
+            callToActionButton.heightAnchor.constraint(equalToConstant: 50)      
         ])
-        
     }
-
-
 }
 
 //text field delegate 
