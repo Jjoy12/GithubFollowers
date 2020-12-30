@@ -38,6 +38,7 @@ class GFAlertVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureContainerView()
+        configureTitleLabel()
         connfigureActionButton()
         configureMessageLabel()
         
